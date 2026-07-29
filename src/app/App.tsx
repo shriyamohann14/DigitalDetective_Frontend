@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { RecruitmentIntro } from "./components/RecruitmentIntro";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Screen = "boot" | "splash" | "recruitment-letter" | "profile-creation" | "mira-onboarding" | "main-menu" | "case-select" | "mission-briefing" | "investigation" | "notebook" | "evidence-wall" | "case-resolution" | "records" | "settings" | "profile";
@@ -926,7 +927,7 @@ function CenterPanel({ activeTool, selectedElement, investigated, onSelectElemen
     setMouse({ x: ((e.clientX - rect.left) / rect.width) * 100, y: ((e.clientY - rect.top) / rect.height) * 100 });
   };
 
-  const toolColor = activeTool ? TOOLS_DATA.find((t) => t.id === activeTool)?.color : null;
+  const toolColor = activeTool ? TOOLS_DATA.find((t) => t.id === activeTool)?.color : undefined;
   const selectedPost = POST_ELEMENTS.find(e => e.id === selectedElement) ?? null;
 
   // Inline span renderer — regular function, not a React component, avoids remount churn
@@ -2625,9 +2626,8 @@ function RecruitmentLetterScreen({ onAccept }: { onAccept: () => void }) {
   };
 
   return (
-    <div className="absolute inset-0 overflow-y-auto"
-      style={{ background: "radial-gradient(ellipse at center, #0f0c08 0%, #07090f 100%)" }}
-    >
+    <>
+    <RecruitmentIntro>
       <div className="flex items-start justify-center min-h-full py-4 px-4">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -2752,6 +2752,8 @@ function RecruitmentLetterScreen({ onAccept }: { onAccept: () => void }) {
           </button>
         </div>
       </motion.div>
+      </div>
+    </RecruitmentIntro>
 
       {/* Stamp overlay — reuses same spring pattern as StampOverlay */}
       <AnimatePresence>
@@ -2783,8 +2785,7 @@ function RecruitmentLetterScreen({ onAccept }: { onAccept: () => void }) {
           </motion.div>
         )}
       </AnimatePresence>
-      </div>
-    </div>
+    </>
   );
 }
 
