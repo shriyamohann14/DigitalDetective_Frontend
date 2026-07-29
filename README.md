@@ -1,11 +1,10 @@
+﻿# Digital Guardians (Case Zero)
 
-  # Detective Game UI Design
+A detective-themed media & information literacy game built for [your MIL hackathon].
 
-  This is a code bundle for Detective Game UI Design. The original project is available at https://www.figma.com/design/Nyyg07HVJPnbjOu14eUhjs/Detective-Game-UI-Design.
+## Tech stack
+React + TypeScript + Vite + Tailwind
 
-  ## Running the code
-
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
-  
+## Running locally
+npm install
+npm run dev
