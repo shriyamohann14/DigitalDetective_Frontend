@@ -2791,52 +2791,102 @@ function RecruitmentLetterScreen({ onAccept }: { onAccept: () => void }) {
 
 // ─── Profile creation screen ──────────────────────────────────────────────────
 function AvatarTile({ idx, selected, onSelect }: { idx: number; selected: boolean; onSelect: () => void }) {
-  // Six simple detective-silhouette SVGs
+  // Eight passport-photo style faces (4 human, 4 animal), all sharing the same
+  // ID-photo corner marks and a common head circle so every option lines up.
+  const cornerMarks = (
+    <>
+      <path d="M5,12 V6 H11" />
+      <path d="M41,12 V6 H35" />
+      <path d="M5,48 V54 H11" />
+      <path d="M41,48 V54 H35" />
+    </>
+  );
   const avatars = [
-    // 0 trench coat + fedora
-    <svg key={0} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <ellipse cx="23" cy="9" rx="8" ry="8.5" fill="currentColor" fillOpacity="0.18"/>
-      <rect x="7" y="1" width="32" height="7" rx="3.5" fill="currentColor" fillOpacity="0.25"/>
-      <rect x="3" y="7" width="40" height="4" rx="2" fill="currentColor" fillOpacity="0.25"/>
-      <path d="M10 17 L6 58 L18 58 L23 40 L28 58 L40 58 L36 17 Q28 24 23 24 Q18 24 10 17Z" fill="currentColor" fillOpacity="0.15"/>
-      <line x1="5" y1="22" x2="3" y2="38"/><line x1="41" y1="22" x2="43" y2="38"/>
+    // 0 man — short neat hair
+    <svg key={0} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <circle cx="23" cy="30" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <path d="M9,27 Q9,13 23,13 Q37,13 37,27 L34,22 Q29,17 23,18 Q17,17 12,22 Z" fill="currentColor" fillOpacity="0.28"/>
+      <circle cx="17.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <circle cx="28.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <line x1="23" y1="31" x2="23" y2="35"/>
+      <path d="M18,38.5 Q23,41.5 28,38.5" />
     </svg>,
-    // 1 magnifying glass person
-    <svg key={1} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="18" cy="9" r="8" fill="currentColor" fillOpacity="0.18"/>
-      <rect x="9" y="17" width="18" height="30" rx="3" fill="currentColor" fillOpacity="0.14"/>
-      <line x1="5" y1="21" x2="3" y2="38"/><line x1="27" y1="21" x2="29" y2="36"/>
-      <circle cx="36" cy="37" r="8.5" fill="currentColor" fillOpacity="0.1"/>
-      <line x1="42" y1="43" x2="47" y2="48"/>
+    // 1 man — mustache, receding hairline
+    <svg key={1} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <circle cx="23" cy="30" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <path d="M10,23 Q10,14 16,13" fill="none"/>
+      <path d="M36,23 Q36,14 30,13" fill="none"/>
+      <circle cx="17.5" cy="28" r="1.3" fill="currentColor" stroke="none"/>
+      <circle cx="28.5" cy="28" r="1.3" fill="currentColor" stroke="none"/>
+      <line x1="23" y1="30" x2="23" y2="34"/>
+      <path d="M17,36.5 Q23,39.5 29,36.5" strokeWidth="2.6" fill="none"/>
     </svg>,
-    // 2 wide-brim hat
-    <svg key={2} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <ellipse cx="23" cy="12" rx="8" ry="8.5" fill="currentColor" fillOpacity="0.18"/>
-      <rect x="10" y="4" width="26" height="7" rx="3.5" fill="currentColor" fillOpacity="0.25"/>
-      <rect x="4"  y="9" width="38" height="5" rx="2.5" fill="currentColor" fillOpacity="0.25"/>
-      <path d="M11 20 L8 58 L20 58 L23 42 L26 58 L38 58 L35 20 Q27 27 23 27 Q19 27 11 20Z" fill="currentColor" fillOpacity="0.14"/>
+    // 2 woman — long hair
+    <svg key={2} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <path d="M8,26 Q6,13 23,12 Q40,13 38,26 L38,47 Q34,34 23,34 Q12,34 8,47 Z" fill="currentColor" fillOpacity="0.22"/>
+      <circle cx="23" cy="30" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <circle cx="17.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <circle cx="28.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <line x1="23" y1="31" x2="23" y2="35"/>
+      <path d="M18,38.5 Q23,41.5 28,38.5" />
     </svg>,
-    // 3 badge holder
-    <svg key={3} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="23" cy="9" r="8" fill="currentColor" fillOpacity="0.18"/>
-      <rect x="10" y="17" width="26" height="34" rx="3" fill="currentColor" fillOpacity="0.12"/>
-      <line x1="5"  y1="20" x2="4"  y2="36"/><line x1="41" y1="20" x2="42" y2="36"/>
-      <rect x="16" y="24" width="14" height="18" rx="1" fill="currentColor" fillOpacity="0.28"/>
-      <line x1="19" y1="30" x2="27" y2="30"/><line x1="19" y1="34" x2="25" y2="34"/>
+    // 3 woman — short bob
+    <svg key={3} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <path d="M8,26 Q7,12 23,12 Q39,12 38,26 L37,41 L9,41 Z" fill="currentColor" fillOpacity="0.24"/>
+      <circle cx="23" cy="30" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <circle cx="17.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <circle cx="28.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <line x1="23" y1="31" x2="23" y2="35"/>
+      <path d="M18,38.5 Q23,41.5 28,38.5" />
     </svg>,
-    // 4 analyst / suit
-    <svg key={4} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="23" cy="9" r="8" fill="currentColor" fillOpacity="0.18"/>
-      <path d="M11 17 L9 58 L21 58 L23 40 L25 58 L37 58 L35 17 Q29 23 23 23 Q17 23 11 17Z" fill="currentColor" fillOpacity="0.14"/>
-      <path d="M17 17 L23 27 L29 17" fill="none"/>
-      <line x1="5"  y1="20" x2="4"  y2="36"/><line x1="41" y1="20" x2="42" y2="36"/>
+    // 4 fox
+    <svg key={4} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <path d="M11,20 L6,7 L18,17 Z" fill="currentColor" fillOpacity="0.22"/>
+      <path d="M35,20 L40,7 L28,17 Z" fill="currentColor" fillOpacity="0.22"/>
+      <circle cx="23" cy="30" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <path d="M17,37 L23,46 L29,37 Z" fill="currentColor" fillOpacity="0.2"/>
+      <circle cx="23" cy="44" r="1.4" fill="currentColor" stroke="none"/>
+      <path d="M14,27 L19,29" /><path d="M32,27 L27,29" />
     </svg>,
-    // 5 field agent (action lean)
-    <svg key={5} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="22" cy="9" r="8" fill="currentColor" fillOpacity="0.18"/>
-      <path d="M10 17 L7 58 L19 58 L22 39 L27 58 L40 58 L36 17 Q28 24 22 24 Q16 24 10 17Z" fill="currentColor" fillOpacity="0.14"/>
-      <line x1="4" y1="21" x2="2" y2="42"/><line x1="38" y1="20" x2="44" y2="36"/>
-      <line x1="7" y1="47" x2="2"  y2="58"/>
+    // 5 owl
+    <svg key={5} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <path d="M13,17 L9,9 L17,15 Z" fill="currentColor" fillOpacity="0.22"/>
+      <path d="M33,17 L37,9 L29,15 Z" fill="currentColor" fillOpacity="0.22"/>
+      <circle cx="23" cy="31" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <circle cx="17" cy="30" r="5" fill="currentColor" fillOpacity="0.14"/>
+      <circle cx="29" cy="30" r="5" fill="currentColor" fillOpacity="0.14"/>
+      <circle cx="17" cy="30" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="29" cy="30" r="1.4" fill="currentColor" stroke="none"/>
+      <path d="M21,36 L23,40 L25,36 Z" fill="currentColor" fillOpacity="0.3"/>
+    </svg>,
+    // 6 cat
+    <svg key={6} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <path d="M12,20 L9,8 L20,16 Z" fill="currentColor" fillOpacity="0.22"/>
+      <path d="M34,20 L37,8 L26,16 Z" fill="currentColor" fillOpacity="0.22"/>
+      <circle cx="23" cy="30" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <path d="M20,29 L18,27 M26,29 L28,27" />
+      <path d="M22,35 L23,37 L24,35 Z" fill="currentColor" fillOpacity="0.3"/>
+      <path d="M23,37 Q20,40 17,39 M23,37 Q26,40 29,39" strokeWidth="1.2"/>
+      <line x1="6" y1="32" x2="15" y2="32"/><line x1="6" y1="36" x2="15" y2="35"/>
+      <line x1="40" y1="32" x2="31" y2="32"/><line x1="40" y1="36" x2="31" y2="35"/>
+    </svg>,
+    // 7 bear
+    <svg key={7} width="46" height="60" viewBox="0 0 46 60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {cornerMarks}
+      <circle cx="11" cy="14" r="5.5" fill="currentColor" fillOpacity="0.2"/>
+      <circle cx="35" cy="14" r="5.5" fill="currentColor" fillOpacity="0.2"/>
+      <circle cx="23" cy="31" r="14" fill="currentColor" fillOpacity="0.10"/>
+      <circle cx="17.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <circle cx="28.5" cy="29" r="1.3" fill="currentColor" stroke="none"/>
+      <ellipse cx="23" cy="38" rx="6.5" ry="5" fill="currentColor" fillOpacity="0.16"/>
+      <circle cx="23" cy="36" r="1.4" fill="currentColor" stroke="none"/>
     </svg>,
   ];
 
@@ -2928,7 +2978,7 @@ function ProfileCreationScreen({ onSave }: { onSave: (p: PlayerProfile) => void 
               SELECT AVATAR
             </div>
             <div style={{ display:"flex", gap:"10px", flexWrap:"wrap" }}>
-              {[0,1,2,3,4,5].map(i => (
+              {[0,1,2,3,4,5,6,7].map(i => (
                 <AvatarTile key={i} idx={i} selected={avatarId === i} onSelect={() => setAvatar(i)} />
               ))}
             </div>
